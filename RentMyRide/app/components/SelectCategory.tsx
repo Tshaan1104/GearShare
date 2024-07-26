@@ -25,8 +25,9 @@ export function SelectCategory() {
               <Image
                 src={item.imageUrl}
                 alt={item.name}
-                height={32}
-                width={32}
+                height={72}
+                width={72}
+                quality={100}
                 className="w-12 h-12  md:w-12 md:h-12 lg:w-16 lg:h-16"
               />
               <h3 className="title text-center truncate">{item.title}</h3>

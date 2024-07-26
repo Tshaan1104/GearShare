@@ -7,6 +7,16 @@ const nextConfig = {
         protocol: "https",
         port: "",
       },
+      {
+        hostname: "qgczojvqewinpiarilqo.supabase.co",
+        protocol: "https",
+        port: "",
+      },
+      {
+        hostname: "w7.pngwing.com",
+        protocol: "https",
+        port: "",
+      },
       
     ],
   },

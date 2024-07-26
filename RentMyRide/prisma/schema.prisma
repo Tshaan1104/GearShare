@@ -16,12 +16,13 @@ datasource db {
 
 // 01:11:11
 model User {
-  id           String    @id @unique
+  id           String       @id @unique
   email        String
   firstName    String
   lastName     String
   profileimage String?
   vehicle      vehicle[]
+  Preference   Preference[]
 }
 
 model vehicle {
@@ -32,10 +33,11 @@ model vehicle {
   Passengers   String?
   Mileage      String?
   Year         String?
-  City         String?
+  Country      String?
   Photo        String?
   price        Int?
   categoryName String?
+  Preference   Preference[]
 
   addedCategory    Boolean @default(false)
   addedDescription Boolean @default(false)
@@ -45,4 +47,15 @@ model vehicle {
 
   User   User?   @relation(fields: [userId], references: [id])
   userId String?
+}
+
+model Preference {
+  id String @id @default(uuid())
+
+  User    User?    @relation(fields: [userId], references: [id])
+  userId  String?
+  vehicle vehicle? @relation(fields: [vehID], references: [id])
+  vehID   String?
+
+  createAT DateTime @default(now())
 }

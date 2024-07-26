@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import prisma from "./lib/db";
 import { supabase } from "./lib/supabase";
+import { revalidatePath } from "next/cache";
 
 export async function createRMRHome({ userId }: { userId: string }) {
     const data = await prisma.vehicle.findFirst({
@@ -27,8 +28,13 @@ export async function createRMRHome({ userId }: { userId: string }) {
     }
     else if (data.addedCategory && !data.addedDescription) {
         return redirect(`/create/${data.id}/description`);
-
     }
+    else if (data.addedCategory && data.addedDescription && !data.addedLocation) {return redirect(`/create/${data.id}/address`);}
+    else if (data.addedCategory && data.addedDescription && data.addedLocation) {const data = await prisma.vehicle.create({
+        data: {
+            userId: userId,
+        },
+    });}
 }
 
 export async function createCategoryPage(formData: FormData) {
@@ -76,4 +82,52 @@ export async function CreateDescription(formData: FormData) {
         }
     });
     return redirect(`/create/${vehid}/address`);
+}
+
+
+export async function createlocation(formData: FormData) {
+
+    const vehid= formData.get('vehid') as string;
+    const countriesbyValue=formData.get('countriesbyvalue') as string;
+
+    const datab=await prisma.vehicle.update({
+        where: {
+            id:vehid,
+        },
+        data:{
+            addedLocation:true,
+            Country:countriesbyValue,
+        }
+    })  ;
+    return redirect("/");
+}
+
+export async function addToPrefrence(formData: FormData) {
+    const vehid= formData.get('vehid') as string;
+    const userid = formData.get('userid') as string;
+    const pathname=formData.get('pathname') as string;
+
+    const data= await prisma.preference.create({
+        data: {
+            vehID: vehid,
+            userId:userid,
+        }
+    });
+    revalidatePath(pathname)
+}
+
+
+export async function Deletefromref(formData: FormData) {
+    const vehid= formData.get('vehid') as string;
+    const preferenceId = formData.get('preferenceId') as string;
+    const userid = formData.get('userid') as string;
+    const pathname= formData.get('pathname') as string;
+    const data= await prisma.preference.delete({
+        where: {
+            id: preferenceId,
+            userId: userid,
+        },
+       
+    });
+    revalidatePath(pathname);
 }

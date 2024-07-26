@@ -51,14 +51,14 @@ const createRMRhomewithid=createRMRHome.bind(null,{
           </form>
             </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/my-homes" className="w-full">My Choices</Link>
+            <Link href="/my-homes" className="w-full">My Listings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link href="/my-homes" className="w-full">My Reservations</Link>
           </DropdownMenuItem>
           
           <DropdownMenuItem>
-            <Link href="/my-homes" className="w-full">My Favorites</Link>
+            <Link href="/preference" className="w-full">My Preferences</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
         <DropdownMenuItem>
