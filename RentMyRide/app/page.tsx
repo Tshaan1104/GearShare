@@ -12,7 +12,12 @@ async function getData({
   searchParams,userId
 }: {
   userId: string | undefined;
-  searchParams?: { filter?: string };
+  searchParams?: { filter?: string;
+    country?: string;
+    mileage?: string;
+    year?: string;
+    passengers?: string;
+   };
 }) {
   console.log("getData called with searchParams:", searchParams);
   const data = await prisma.vehicle.findMany({
@@ -21,6 +26,10 @@ async function getData({
       addedDescription: true,
       addedLocation: true,
       categoryName: searchParams?.filter ?? undefined,
+      Country: searchParams?.country ?? undefined,
+      Mileage: searchParams?.mileage ?? undefined,
+      Year: searchParams?.year ?? undefined,
+      Passengers: searchParams?.passengers ?? undefined,
     },
     select: {
       Photo: true,
@@ -42,7 +51,12 @@ async function getData({
 export default function Home({
   searchParams,
 }: {
-  searchParams?: { filter?: string };
+  searchParams?: { filter?: string;
+    country?: string;
+    mileage?: string;
+    year?: string;
+    passengers?: string;
+   };
 }) {
   console.log("Home component received searchParams:", searchParams);
 
@@ -59,7 +73,12 @@ export default function Home({
 async function ShowItems({
   searchParams,
 }: {
-  searchParams?: { filter?: string };
+  searchParams?: { filter?: string;
+    country?: string;
+    mileage?: string;
+    year?: string;
+    passengers?: string;
+   };
 }) {
   console.log("ShowItems component received searchParams:", searchParams);
   if (searchParams?.filter) {

@@ -23,6 +23,7 @@ model User {
   profileimage String?
   vehicle      vehicle[]
   Preference   Preference[]
+  Reservation  Reservation[]
 }
 
 model vehicle {
@@ -38,6 +39,8 @@ model vehicle {
   price        Int?
   categoryName String?
   Preference   Preference[]
+  Reservation  Reservation[]
+
 
   addedCategory    Boolean @default(false)
   addedDescription Boolean @default(false)
@@ -58,4 +61,20 @@ model Preference {
   vehID   String?
 
   createAT DateTime @default(now())
+
+}
+
+
+model Reservation{
+  id String @id @default(uuid())
+  
+  startdata DateTime
+  enddate DateTime
+  createdAt DateTime @default(now())
+
+
+  User    User?    @relation(fields: [userId], references: [id])
+  userId  String?
+  vehicle vehicle? @relation(fields: [vehID], references: [id])
+  vehID   String?
 }

@@ -131,3 +131,22 @@ export async function Deletefromref(formData: FormData) {
     });
     revalidatePath(pathname);
 }
+
+export async function validatereservation(formData: FormData){
+    const  userid = formData.get('userid') as string;
+    const vehid = formData.get('vehid') as string;
+    const startdate = formData.get('startdate') as string ;
+    const enddate = formData.get('enddate') as string ;
+
+    const data=await prisma.reservation.create({
+        data:{
+            userId: userid,
+            startdata: startdate,
+            enddate: enddate,
+            vehID: vehid,
+
+        }
+    });
+    return redirect("/");
+
+}

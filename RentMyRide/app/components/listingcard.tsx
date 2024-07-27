@@ -70,7 +70,7 @@ const country = getcountriesvalue(location);
         )}
       </div>
 
-      <Link href={"/"} >
+      <Link href={`/home/${vehid}`} >
         <h3 className="font-medium text-base mt-3">{country?.flag} {country?.label} / {country?.region}</h3>
         <p className="text-muted-foreground text-sm line-clamp-2">{description}</p>
         <p className="text-muted-foreground text-sm line-clamp-2"><span className="font-medium text-black">₹{price} </span>/ Day</p>

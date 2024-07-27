@@ -3,6 +3,7 @@ import Image from 'next/image';
 import img1 from '../../public/rmr logo.png'
 import img2 from '../../public/rmr block logo.png'
 import { Usernav } from './usernav';
+import SearchComponents from './searchcomponents';
 
 export function Navbar(){
     return (
@@ -14,9 +15,7 @@ export function Navbar(){
 <Image src={img2} alt="mobile logo" className='block lg:hidden w-12' priority/>
 
 </Link>
-<div className='rounded-full border px-5 py-2'>
-Search Here
-</div>
+<SearchComponents/>
 
 <Usernav/>
 </div>

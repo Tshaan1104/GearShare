@@ -54,7 +54,7 @@ const createRMRhomewithid=createRMRHome.bind(null,{
             <Link href="/my-homes" className="w-full">My Listings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/my-homes" className="w-full">My Reservations</Link>
+            <Link href="/reservations" className="w-full">My Reservations</Link>
           </DropdownMenuItem>
           
           <DropdownMenuItem>

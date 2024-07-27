@@ -18,11 +18,11 @@ export async function GET(){
 if(!dbUser){
     dbUser=await prisma.user.create({
        data : {
-        email: user.email ?? "",
+        email: user.email ?? "", 
         firstName: user.given_name ?? "",
-        lastName: user.given_name ?? "",
+        lastName: user.family_name ?? "",
         id: user.id,
-        profileimage: user.picture ?? "https://avatar.vercel.sh/${user.given_name}",
+        profileimage: user.picture,
        }
     });
 }

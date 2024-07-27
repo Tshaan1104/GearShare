@@ -50,3 +50,22 @@ export function Deletefrompreference(){
 </>
   )
 }
+
+
+export function Reservationbutton(){
+const {pending} =useFormStatus();
+return (
+  <>
+  {pending ? (
+       <Button className="w-full" disabled>
+       <Loader2 className="w-4 h-4 animate-spin mr-2"/>Processing....
+     </Button>
+
+  ):(
+    <Button className="w-full" type="submit">
+    Make Reservations
+  </Button>
+  )}
+  </>
+)
+}
