@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { SkeletonCard } from "./components/Skeletonbar";
 import Noitem from "./components/noitem";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import {unstable_noStore as noStore} from "next/cache";
 
 async function getData({
   searchParams,userId
@@ -19,7 +20,7 @@ async function getData({
     passengers?: string;
    };
 }) {
-  console.log("getData called with searchParams:", searchParams);
+    noStore();
   const data = await prisma.vehicle.findMany({
     where: {
       addedCategory: true,

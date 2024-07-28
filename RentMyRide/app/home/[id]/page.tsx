@@ -10,8 +10,11 @@ import { Button } from "@/components/ui/button";
 import Link  from "next/link";
 import { validatereservation } from "@/app/action";
 import { Reservationbutton } from "@/app/components/submitbuttons";
+import {unstable_noStore as noStore} from "next/cache";
+
 
 async function getData(vehid: string) {
+  noStore();
   const data = await prisma.vehicle.findUnique({
     where: {
       id: vehid,
