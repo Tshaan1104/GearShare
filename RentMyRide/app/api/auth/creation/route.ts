@@ -30,5 +30,5 @@ if(!dbUser){
     });
 }
 
-return NextResponse.redirect("http://localhost:3000");
+return NextResponse.redirect("https://rent-my-ride-ten.vercel.app");
 }
