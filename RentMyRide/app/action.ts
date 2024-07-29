@@ -62,6 +62,8 @@ export async function CreateDescription(formData: FormData) {
     const imagefile = formData.get("image") as File;
     const passengers = formData.get("Passengers") as string;
     const vehid = formData.get("vehid") as string;
+    const mileage =formData.get("Mileage") as string;
+    const year = formData.get("yom") as string;
 
     const { data:imagedata } = await supabase.storage.from("images").upload(`${imagefile.name}-${new Date()}`, imagefile, {
         cacheControl: "2592000",
@@ -79,6 +81,8 @@ export async function CreateDescription(formData: FormData) {
             Photo: imagedata?.path, // Assuming you meant to use 'imagedata' here
             Passengers: passengers,
             addedDescription: true,
+            Mileage: mileage,
+            Year:year,
         }
     });
     return redirect(`/create/${vehid}/address`);
